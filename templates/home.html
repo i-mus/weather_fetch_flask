@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find weather</title>
+</head>
+<body>
+    <div class="container" style="margin-top: 30px;">
+    <form action="/weather" method="post" style="width: 400px; margin:20px auto;">
+        <input type="text" name="q" placeholder="Enter the place" style="width: 300px; margin:0 auto; padding:20px auto">
+        <input type="submit" value="get weather" style="padding:20px auto">
+    </form>
+</div>
+    {% if error %}
+    <div class='text-center'style="margin: 0px 20px 0px 20px;background-color: rgb(0, 0, 0, 0.7);color: #FFFFFF; padding-bottom: 20px;">
+    <h2>{{ error }}</h2>
+    </div>
+    {% endif %}
+    
+    {% if name %}
+    <div style="margin: 0px 20px 0px 20px;background-color: rgb(0, 0, 0, 0.7);color: #FFFFFF; padding-bottom: 20px;">
+        <div class="row text-center">
+            <h1>Current Temperature in {{ name }}</h1>
+        </div>
+        <div class="row text-center" style="margin-top: 10px;">
+            <h2>{{ temp_c }}°C / {{ temp_f }}°F <img src='{{ condition_icon }}'></h2>
+            <p><i>Last Updated- {{ last_updated }}</i></p>
+        </div>
+        <div class="row text-center" style="margin-top: 20px;">
+            <div class="details col">
+                <p>Region: {{ region }} / {{ country }}</p>
+            </div>
+            <div class="details col">
+                <p>Lattitude: {{ lat }}°</p>
+            </div>
+            <div class="details col">
+                <p>Longitude: {{ lon }}°</p>
+            </div>
+            <div class="details col">
+                <p>TimeZone: {{ tz_id }}</p>
+            </div>
+            <div class="details col">
+                <p>LocalTime: {{ localtime }}</p>
+            </div>
+        </div>
+        
+        <div class="row text-center" style="margin-top: 20px;">
+            <div class="details col">
+                <p>Condition: {{ condition_text }}</p>
+            </div>
+            <div class="details col">
+                <p>Wind: {{ wind_mph }}mph / {{ wind_kph }}kph</p>
+            </div>
+            <div class="details col">
+                <p>Wind Direction: {{ wind_degree }}° {{ wind_dir }} </p>
+            </div>
+            <div class="details col">
+                <p>Pressure: {{ pressure_mb }}mb / {{ pressure_in }}in</p>
+            </div>
+            <div class="details col">
+                <p>Precip: {{ precip_mm }}mm / {{ precip_in }}in</p>
+            </div>
+        </div>
+        
+        <div class="row text-center" style="margin-top: 20px;">
+            <div class="details col">
+                <p>Humidity: {{ humidity }}</p>
+            </div>
+            <div class="details col">
+                <p>Feelslike: {{ feelslike_c }}°C / {{ feelslike_f }}°F</p>
+            </div>
+            <div class="details col">
+                <p>Visibility: {{ vis_km }}km / {{ vis_miles }}miles</p>
+            </div>
+            <div class="details col">
+                <p>UV: {{ uv }}</p>
+            </div>
+            <div class="details col">
+                <p>Gust mph: {{ gust_mph }}mph / {{ gust_kph }}kph</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</body>
+</html>
